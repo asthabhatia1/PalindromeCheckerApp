@@ -3,19 +3,24 @@ import java.util.Scanner;
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Input Text: ");
-        String text = sc.next();
-        int n= text.length();
-        System.out.println(text);
-        String newText="";
-        for(int i=n-1; i>=0; i--){
-            newText= newText + text.charAt(i);
+        System.out.print("Enter a word: ");
+        String input = sc.nextLine();
+
+        int start = 0;
+        int end = input.length() - 1;
+
+        boolean isPalindrome = true;
+        while (start < end) {
+            if (input.charAt(start) != input.charAt(end)) {
+                isPalindrome = false;
+                break;
+            }
+            start++;
+            end--;
         }
-        if(text.equals(newText)){
-            System.out.println("Is it a palindrome? : True");
-        }
-        else{
-            System.out.println("Is it a palindrome? : False");
-        }
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + isPalindrome);
+
+        sc.close();
     }
 }
