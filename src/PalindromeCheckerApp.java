@@ -7,13 +7,11 @@ public class PalindromeCheckerApp {
         String text = sc.next();
         int n= text.length();
         System.out.println(text);
-        int flag = 0;
-        for(int i=0; i<n; i++){
-            if ( text.charAt(i)!=text.charAt(n-1-i)){
-                flag =1;
-            }
+        String newText="";
+        for(int i=n-1; i>=0; i--){
+            newText= newText + text.charAt(i);
         }
-        if( flag ==0){
+        if(text.equals(newText)){
             System.out.println("Is it a palindrome? : True");
         }
         else{
