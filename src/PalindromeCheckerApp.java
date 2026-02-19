@@ -1,34 +1,39 @@
-import java.util.Scanner;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
-public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a string: ");
-        String input = scanner.nextLine();
-        boolean isPalindrome = checkPalindrome(input);
+        // UC1: Welcome Message
+        System.out.println("Welcome to the Palindrome Checker Management System");
+        System.out.println("Version : 6.0");
 
-        if (isPalindrome) {
-            System.out.println("The string is a palindrome.");
-        } else {
-            System.out.println("The string is NOT a palindrome.");
-        }
+        // Define the input string to validate
+        String input = "civic";
+        System.out.println("Input : " + input);
 
-        scanner.close();
-    }
+        // Create a Queue to store characters in FIFO order
+        Queue<Character> queue = new LinkedList<>();
 
-    public static boolean checkPalindrome(String str) {
+        // Create a Stack to store characters in LIFO order
         Stack<Character> stack = new Stack<>();
-        for (int i = 0; i < str.length(); i++) {
-            stack.push(str.charAt(i));
+        for (char c : input.toCharArray()) {
+            queue.add(c);
+            stack.push(c);
         }
-        for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) != stack.pop()) {
-                return false;
+
+        // Flag to track palindrome status
+        boolean isPalindrome = true;
+
+        // Compare characters until the queue becomes empty
+        while (!queue.isEmpty()) {
+            // dequeue() vs pop()
+            if (!queue.remove().equals(stack.pop())) {
+                isPalindrome = false;
+                break;
             }
         }
 
-        return true;
+        System.out.println("Is Palindrome? : " + isPalindrome);
+        System.out.println("System initialized successfully..");
     }
 }
-
