@@ -31,3 +31,4 @@ public class PalindromeCheckerApp {
         return true;
     }
 }
+
