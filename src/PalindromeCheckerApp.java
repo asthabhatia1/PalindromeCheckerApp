@@ -1,35 +1,48 @@
 import java.util.Scanner;
+import java.util.Stack;
 
-public class PalindromeCheckerApp {
+// Service Class
+class PalindromeChecker {
 
-    public static boolean isPalindrome(String str) {
+    // Public method exposed to user
+    public boolean checkPalindrome(String input) {
 
+        // Normalize string
+        input = input.toLowerCase();
+        input = input.replaceAll("[^a-z0-9]", "");
 
-        str = str.toLowerCase();
-        str = str.replaceAll("[^a-z0-9]", "");  // removes spaces & special characters
+        Stack<Character> stack = new Stack<>();
 
-        int left = 0;
-        int right = str.length() - 1;
+        // Push all characters to stack
+        for (int i = 0; i < input.length(); i++) {
+            stack.push(input.charAt(i));
+        }
 
-        while (left < right) {
-            if (str.charAt(left) != str.charAt(right)) {
+        // Compare by popping
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) != stack.pop()) {
                 return false;
             }
-            left++;
-            right--;
         }
 
         return true;
     }
+}
+
+// Main Class
+public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
+        PalindromeChecker checker = new PalindromeChecker();
 
         System.out.print("Enter a string: ");
         String input = sc.nextLine();
 
-        if (isPalindrome(input)) {
+        boolean result = checker.checkPalindrome(input);
+
+        if (result) {
             System.out.println("It is a Palindrome.");
         } else {
             System.out.println("Not a Palindrome.");
