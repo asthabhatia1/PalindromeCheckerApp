@@ -2,19 +2,24 @@ import java.util.Scanner;
 
 public class PalindromeCheckerApp {
 
+    public static boolean isPalindrome(String str) {
 
-    public static boolean isPalindrome(String str, int start, int end) {
 
+        str = str.toLowerCase();
+        str = str.replaceAll("[^a-z0-9]", "");  // removes spaces & special characters
 
-        if (start >= end) {
-            return true;
+        int left = 0;
+        int right = str.length() - 1;
+
+        while (left < right) {
+            if (str.charAt(left) != str.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
         }
 
-        if (str.charAt(start) != str.charAt(end)) {
-            return false;
-        }
-
-        return isPalindrome(str, start + 1, end - 1);
+        return true;
     }
 
     public static void main(String[] args) {
@@ -24,9 +29,7 @@ public class PalindromeCheckerApp {
         System.out.print("Enter a string: ");
         String input = sc.nextLine();
 
-        boolean result = isPalindrome(input, 0, input.length() - 1);
-
-        if (result) {
+        if (isPalindrome(input)) {
             System.out.println("It is a Palindrome.");
         } else {
             System.out.println("Not a Palindrome.");
