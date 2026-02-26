@@ -1,37 +1,50 @@
+import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
-//new code
-    public static void main(String[] args) {
-        // UC1: Welcome Message
-        System.out.println("Welcome to the Palindrome Checker Management System");
-        System.out.println("Version : 6.0");
-        // Define the input string to validate
-        String input = "civic";
-        System.out.println("Input : " + input);
+import java.util.Scanner;
 
-        // Create a Queue to store characters in FIFO order
-        Queue<Character> queue = new LinkedList<>();
+public class PalindromeCheckerApp {
 
-        // Create a Stack to store characters in LIFO order
-        Stack<Character> stack = new Stack<>();
-        for (char c : input.toCharArray()) {
-            queue.add(c);
-            stack.push(c);
+    public static boolean isPalindrome(String input) {
+
+        // Create a Deque
+        Deque<Character> deque = new LinkedList<>();
+
+        input = input.toLowerCase().replaceAll("\\s+", "");
+
+        // Insert characters into deque
+        for (int i = 0; i < input.length(); i++) {
+            deque.addLast(input.charAt(i));
         }
 
-        // Flag to track palindrome status
-        boolean isPalindrome = true;
+        // Compare front and rear until deque size is 1 or 0
+        while (deque.size() > 1) {
+            char front = deque.removeFirst();
+            char rear = deque.removeLast();
 
-        // Compare characters until the queue becomes empty
-        while (!queue.isEmpty()) {
-            // dequeue() vs pop()
-            if (!queue.remove().equals(stack.pop())) {
-                isPalindrome = false;
-                break;
+            if (front != rear) {
+                return false;
             }
         }
 
-        System.out.println("Is Palindrome? : " + isPalindrome);
-        System.out.println("System initialized successfully..");
+        return true;
     }
+
+    // Main Method
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("=== Deque-Based Palindrome Checker ===");
+        System.out.print("Enter a string: ");
+
+        String input = scanner.nextLine();
+
+        if (isPalindrome(input)) {
+            System.out.println("Result: The given string is a Palindrome.");
+        } else {
+            System.out.println("Result: The given string is NOT a Palindrome.");
+        }
+
+        scanner.close();
+    }
+}
