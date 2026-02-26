@@ -1,12 +1,11 @@
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
-
+//new code
     public static void main(String[] args) {
         // UC1: Welcome Message
         System.out.println("Welcome to the Palindrome Checker Management System");
         System.out.println("Version : 6.0");
-
         // Define the input string to validate
         String input = "civic";
         System.out.println("Input : " + input);
@@ -36,4 +35,3 @@ import java.util.Stack;
         System.out.println("Is Palindrome? : " + isPalindrome);
         System.out.println("System initialized successfully..");
     }
-}
