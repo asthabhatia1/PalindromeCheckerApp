@@ -8,7 +8,7 @@ public class PalindromeCheckerApp {
         boolean check(String input);
     }
 
-    // 2️⃣ Stack Strategy
+    // 2️⃣ Stack Strategy Implementation
     static class StackStrategy implements PalindromeStrategy {
 
         @Override
@@ -32,7 +32,7 @@ public class PalindromeCheckerApp {
         }
     }
 
-    // 3️⃣ Deque Strategy
+    // 3️⃣ Deque Strategy Implementation
     static class DequeStrategy implements PalindromeStrategy {
 
         @Override
@@ -84,7 +84,7 @@ public class PalindromeCheckerApp {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Choose Strategy:");
+        System.out.println("Choose Palindrome Strategy:");
         System.out.println("1. Stack Strategy");
         System.out.println("2. Deque Strategy");
 
@@ -104,7 +104,9 @@ public class PalindromeCheckerApp {
         System.out.print("Enter a string: ");
         String input = sc.nextLine();
 
-        if (service.execute(input)) {
+        boolean result = service.execute(input);
+
+        if (result) {
             System.out.println("It is a Palindrome.");
         } else {
             System.out.println("Not a Palindrome.");
